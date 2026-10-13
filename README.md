@@ -15,7 +15,9 @@ npm run dev
 npm run build
 ```
 
-Output is written to `dist/` for Nginx on a DigitalOcean droplet. See [DEPLOY.md](./DEPLOY.md).
+Output is written to `dist/`. Host for free on **Cloudflare Pages** (recommended) — see [DEPLOY.md](./DEPLOY.md).
+
+Repo: [github.com/avikaido/website](https://github.com/avikaido/website)
 
 ## Integrations
 

@@ -1,87 +1,46 @@
-# Deploy AviKaiDo to a DigitalOcean droplet
+# Deploy AviKaiDo
 
-Static Astro build — Nginx serves `dist/`. No Node process is required in production.
+## Recommended: Cloudflare Pages (free)
 
-## 1. Build locally (or on the droplet)
+Fits a static Astro site: HTTPS, CDN, and Git-linked deploys with no droplet to manage.
+
+### First-time setup (dashboard)
+
+1. Open [Cloudflare Dashboard](https://dash.cloudflare.com) → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**.
+2. Authorize Cloudflare on GitHub and select **`avikaido/website`**.
+3. Build settings:
+
+   | Setting | Value |
+   |---------|--------|
+   | Production branch | `main` |
+   | Framework preset | Astro (or None) |
+   | Build command | `npm run build` |
+   | Build output directory | `dist` |
+   | Root directory | `/` (repo root) |
+   | Node version | `22` (Environment variable `NODE_VERSION=22`) |
+
+4. **Save and Deploy**. You get a `*.pages.dev` URL when it finishes.
+5. Custom domain: **Custom domains** → add `avikaido.com` and `www`.
+   - If DNS is already on Cloudflare: follow the prompts (usually automatic).
+   - If DNS is elsewhere: either transfer the domain to Cloudflare DNS (free) or add the CNAME/records Cloudflare shows.
+
+Every push to `main` rebuilds and deploys automatically.
+
+### Optional: Wrangler CLI
 
 ```bash
-cd new-site
-npm ci
+npm i -g wrangler
+npx wrangler login
 npm run build
+npx wrangler pages deploy dist --project-name=avikaido
 ```
 
-Output is in `new-site/dist/`.
+### Zoho after go-live
 
-## 2. Copy files to the droplet
+Set CRM return URL to `https://avikaido.com/contact?sent=1` and allowlist the production domain in SalesIQ. See [ZOHO.md](./ZOHO.md).
 
-Example:
+---
 
-```bash
-rsync -avz --delete dist/ root@YOUR_DROPLET_IP:/var/www/avikaido/
-```
+## Alternative: DigitalOcean droplet + Nginx
 
-## 3. Nginx site config
-
-Create `/etc/nginx/sites-available/avikaido`:
-
-```nginx
-server {
-    listen 80;
-    listen [::]:80;
-    server_name avikaido.com www.avikaido.com;
-
-    root /var/www/avikaido;
-    index index.html;
-
-    gzip on;
-    gzip_types text/css application/javascript application/json image/svg+xml text/xml;
-
-    location / {
-        try_files $uri $uri/ $uri.html =404;
-    }
-
-    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|webp|woff2)$ {
-        expires 7d;
-        add_header Cache-Control "public";
-    }
-}
-```
-
-Enable and reload:
-
-```bash
-sudo ln -s /etc/nginx/sites-available/avikaido /etc/nginx/sites-enabled/
-sudo nginx -t && sudo systemctl reload nginx
-```
-
-## 4. DNS
-
-Point `avikaido.com` and `www` A records to the droplet IP.
-
-## 5. HTTPS (Certbot)
-
-```bash
-sudo apt install certbot python3-certbot-nginx
-sudo certbot --nginx -d avikaido.com -d www.avikaido.com
-```
-
-## 6. Zoho (CRM, SalesIQ, Books) + Gmail
-
-Email stays on Gmail (`avikaido@gmail.com`). Configure Zoho tokens in `src/consts.ts` — full
-walkthrough in [ZOHO.md](./ZOHO.md):
-
-1. Zoho CRM webform → Leads (`actionUrl`, `xnQsjsdp`, `xmIwtLD`)
-2. Zoho SalesIQ widget code (`widgetCode`)
-3. Optional Zoho Books/Invoice client portal URL
-
-Until CRM tokens are set, the contact form falls back to `mailto:`. Rebuild after changing consts.
-
-## 7. Optional: build on the droplet
-
-```bash
-# install node 22+, then:
-cd /opt/avikaido-src/new-site
-git pull   # if you keep a repo on the server
-npm ci && npm run build
-rsync -a --delete dist/ /var/www/avikaido/
-```
+Only if you prefer a VPS. Build locally, rsync `dist/` to the server, use [`nginx.avikaido.conf`](./nginx.avikaido.conf), Certbot for HTTPS. See the Nginx section in git history or ask if you still need that path.
