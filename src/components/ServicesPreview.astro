@@ -1,0 +1,49 @@
+---
+const services = [
+  {
+    title: 'AI implementation consulting',
+    href: '/services#implementation',
+    text: 'Readiness assessment, build-vs-buy calls, architecture blueprints, and sequenced roadmaps tied to measurable business outcomes.',
+  },
+  {
+    title: 'Agentic workflow automation',
+    href: '/services#agentic',
+    text: 'Production agents wired into your real systems — Slack, CRM, EHR-adjacent workflows, support, ops — with human review and evals.',
+  },
+  {
+    title: 'Custom AI product builds',
+    href: '/services#products',
+    text: 'RAG platforms, LLM selection, observability, and delivery standards so internal AI products launch faster and run reliably.',
+  },
+  {
+    title: 'Conversational AI & CX',
+    href: '/services#conversational',
+    text: 'Chat, voice, and omnichannel assistants grounded in NLP/LLM best practices — designed for CSAT, containment, and trust.',
+  },
+];
+---
+
+<section class="section" aria-labelledby="services-heading">
+  <div class="wrap">
+    <p class="section__eyebrow">Capabilities</p>
+    <h2 id="services-heading">What we help you ship</h2>
+    <p class="answer">
+      AviKaiDo provides AI implementation consulting, agentic automation, custom AI product
+      architecture, and conversational CX systems for mid-market and enterprise teams. Engagements
+      end with production workflows, owned artifacts, and clear KPIs — not a recommendation deck.
+    </p>
+    <div>
+      {
+        services.map((s) => (
+          <a class="service-link" href={s.href}>
+            <div class="service-link__meta">
+              <h3>{s.title}</h3>
+              <span class="service-link__arrow" aria-hidden="true">→</span>
+            </div>
+            <p>{s.text}</p>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

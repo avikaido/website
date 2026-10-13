@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const engagements = [
+  {
+    org: 'AstraZeneca',
+    role: 'AI Solutions Architect',
+    period: '2023 – Present',
+    title: 'AIMI Oncology Chatbot platform',
+    text: 'Owned enterprise architecture for the AIMI Oncology Chatbot, moving from vendor to a customized internal platform. Led LLM selection and integration for NLU, generation, summarization, and analysis of 1TB+ historic transcripts. Implemented OpenAI, Llama, Claude, and SageMaker for RAG with Python, Pinecone, and GraphDB, and met SLAs with Datadog, AppDynamics, Dynatrace, New Relic, and Splunk.',
+    metrics: [
+      { value: '70%', label: 'faster time to market' },
+      { value: '$170K+', label: 'annual fees saved' },
+      { value: '+15% NPS', label: 'experience lift' },
+      { value: '20%+', label: 'ROI growth' },
+    ],
+  },
+  {
+    org: 'CVS Health / Aetna',
+    role: 'Senior Technical Product Manager',
+    period: '2022 – 2023',
+    title: 'CeeVee omnichannel chatbot & YAVA voice assistant',
+    text: 'Introduced VoiceFlow and integrations with Dialogflow, Nuance Mix, and IBM Watson to standardize design/dev. Applied ChatGPT and LLM tuning across 2TB+ of customer support transcripts. Managed a 15-person cross-functional team with business partners and vendors through launch of mobile/web chatbot and voice assistant.',
+    metrics: [
+      { value: '60%', label: 'faster time to market' },
+      { value: '2×', label: 'successful engagements' },
+      { value: '42%', label: 'call reduction' },
+      { value: '+12% CSAT', label: 'satisfaction lift' },
+    ],
+  },
+  {
+    org: 'Sensormatic (Johnson Controls)',
+    role: 'Senior Global Manager, AI/ML Solutions',
+    period: '2021 – 2022',
+    title: 'Sensormatic IQ ML portfolio',
+    text: 'Built a unified data platform and ML portfolio moving customers from CAPEX to OPEX and on-prem to cloud. Led a multi-disciplinary team across four locations to ship three ML product features in six months, collaborating with data scientists on proprietary computer vision and prediction models.',
+    metrics: [
+      { value: '15%', label: 'revenue growth' },
+      { value: '13%', label: 'sales lift in 2 quarters' },
+      { value: '22%', label: 'business growth' },
+      { value: '8', label: 'CV / prediction models' },
+    ],
+  },
+  {
+    org: 'Wells Fargo',
+    role: 'Vice President, AI Product Manager',
+    period: '2019 – 2021',
+    title: 'Auxi chatbot/voice/NLP & Fargo platform transition',
+    text: 'Led two 20-person multi-disciplinary teams to launch Auxi proprietary chatbot/voice/NLP and data annotation platforms at bank scale. Directed the transition from proprietary to cloud vendor platform through POC/RFP and negotiations. Instituted product practice, value streams, and strict data/security governance.',
+    metrics: [
+      { value: '20M+', label: 'Auxi users' },
+      { value: '60M+', label: 'Fargo users served' },
+      { value: '$8M', label: 'yearly cost reduction' },
+      { value: '$25M', label: 'yearly platform savings' },
+    ],
+  },
+  {
+    org: 'Royal Caribbean Cruises',
+    role: 'Conversational AI UX Consultant',
+    period: '2018 – 2019',
+    title: 'Travel-agent B2B chatbot & shipboard assistant',
+    text: 'Overhauled the B2B chatbot for travel agents with NLP and a new API based on user feedback and A/B testing. Conceptualized an original cruise-ship chatbot using early on-prem ML for NLP, computer vision, suggestions, and predictions, and stood up model testing plus MLOps practices.',
+    metrics: [
+      { value: '41%', label: 'higher adoption' },
+      { value: '62%', label: 'lower drop-off' },
+      { value: '5×', label: 'faster boarding' },
+      { value: '38%', label: 'more purchases' },
+    ],
+  },
+  {
+    org: 'eMara.ai',
+    role: 'Technology Director',
+    period: '2017 – 2018',
+    title: 'Psycho-educational Messenger chatbot',
+    text: 'Launched eMara, an early mental-health chatbot on Facebook Messenger. Built patent-pending conversational data collection for self-help contexts, proprietary models, and research partnerships — scaling to 10K users in under six months and supporting a $2M raise.',
+    metrics: [
+      { value: '10K', label: 'users in <6 months' },
+      { value: '$2M', label: 'funding supported' },
+    ],
+  },
+  {
+    org: 'AviKaiDo',
+    role: 'Founder & CEO',
+    period: '2016 – 2017',
+    title: 'EveryBot CMS & BotMakers Detroit',
+    text: 'Founded AviKaiDo and shipped EveryBot CMS, an early conversational AI platform for SMBs, with bots for DraftKings, Biggby Coffee, FreshBooks, McCann, and Allstate. Taught workshops at HackWSU and MHacks, founded BotMakers Detroit, and presented on AI, UX, and automation.',
+    metrics: [
+      { value: '5+', label: 'named bot launches' },
+      { value: '2016', label: 'company founded' },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Work"
+  description="Production AI outcomes across AstraZeneca, CVS/Aetna, Sensormatic, Wells Fargo, Royal Caribbean, eMara.ai, and AviKaiDo."
+  path="/work"
+>
+  <header class="page-hero">
+    <div class="wrap">
+      <p class="section__eyebrow">Work</p>
+      <h1>Outcomes from live AI systems</h1>
+      <p class="answer">
+        Selected engagements led by AviKaiDo founder Alexander Khanukov. Metrics are taken from
+        shipped products at named organizations — healthcare, finance, retail intelligence, travel,
+        and mental health tech — spanning strategy, product, architecture, and delivery.
+      </p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap">
+      {
+        engagements.map((e) => (
+          <article class="proof-item">
+            <p class="proof-item__org">
+              {e.org} · {e.role} · {e.period}
+            </p>
+            <h2 class="proof-item__title" style="font-size: 1.35rem;">{e.title}</h2>
+            <p>{e.text}</p>
+            <ul class="proof-item__metrics">
+              {e.metrics.map((m) => (
+                <li>
+                  {m.value}
+                  <span>{m.label}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <CtaBand
+    title="Want results like these on your stack?"
+    text="Tell us the workflow that hurts most. We will map a thin production slice and an honest ROI case."
+  />
+</BaseLayout>

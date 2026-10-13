@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+
+const faqs = [
+  {
+    q: 'How long does a typical engagement take?',
+    a: 'Discovery usually runs two to three weeks. A focused production build typically lands in four to ten weeks depending on integrations, data readiness, and governance requirements. Managed run support is optional and month-to-month.',
+  },
+  {
+    q: 'Do you only recommend tools, or do you build?',
+    a: 'AviKaiDo ships. Strategy and implementation stay with the same accountable builder so roadmaps do not die in a handoff. You own the code, prompts, configs, and runbooks.',
+  },
+  {
+    q: 'Which models and clouds do you use?',
+    a: 'We select against your cost, latency, privacy, and compliance constraints — OpenAI, Claude, Llama, Gemini, SageMaker, Vertex, Bedrock, and on-prem options when required. Model choice follows the use case, not a preferred vendor list.',
+  },
+  {
+    q: 'Can you work inside regulated healthcare or finance environments?',
+    a: 'Yes. Prior production work includes oncology support chat at AstraZeneca, pharmacy and insurance CX at CVS/Aetna, bank-scale assistants at Wells Fargo, and Epic EHR–adjacent healthcare workflows. Security, auditability, and human review are designed in from day one.',
+  },
+];
+---
+
+<BaseLayout
+  title="Services"
+  description="AI implementation consulting, agentic workflow automation, custom AI product builds, and conversational CX from AviKaiDo."
+  path="/services"
+>
+  <header class="page-hero">
+    <div class="wrap">
+      <p class="section__eyebrow">Services</p>
+      <h1>AI consulting that ends in production</h1>
+      <p class="answer">
+        AviKaiDo helps organizations assess where AI creates real leverage, design the architecture,
+        and ship agentic workflows, conversational systems, and custom AI products on your data —
+        with measurable ROI and artifacts your team owns.
+      </p>
+    </div>
+  </header>
+
+  <section class="section" id="implementation" aria-labelledby="impl-heading">
+    <div class="wrap">
+      <h2 id="impl-heading">AI implementation consulting</h2>
+      <p class="answer">
+        AI implementation consulting at AviKaiDo is the assessment, build-vs-buy decision,
+        reference architecture, and sequenced roadmap that come before a production build — done by
+        the same team that can deliver it. Deliverables include an AI-readiness scorecard, vendor
+        and model recommendations, and a 12-month automation sequence tied to cost, revenue, or
+        time saved.
+      </p>
+      <ul>
+        <li>Workflow mapping and human baseline (accuracy, throughput, cost, turnaround)</li>
+        <li>Build vs buy vs managed-team recommendation with trade-offs documented</li>
+        <li>Model family, retrieval approach (RAG / hybrid / agentic), and deployment surface</li>
+        <li>Governance, reviewer model, eval plan, and fixed-price statement of work for Build</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--surface" id="agentic" aria-labelledby="agentic-heading">
+    <div class="wrap">
+      <h2 id="agentic-heading">Agentic workflow &amp; business systems automation</h2>
+      <p class="answer">
+        Agentic automation at AviKaiDo means production agents that execute real multi-step work
+        across your tools — routing, research, reporting, support triage, ops handoffs — with
+        guardrails, human approval where it matters, and monitoring against the KPIs we baselined.
+      </p>
+      <ul>
+        <li>Agents connected to Slack, CRM, ticketing, knowledge bases, and internal APIs</li>
+        <li>Thin-slice production launch on real traffic before expanding scope</li>
+        <li>Prompt/version control, eval suites, and observability (Datadog, Splunk, and peers)</li>
+        <li>Operator training so your team can extend the system after handoff</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="products" aria-labelledby="products-heading">
+    <div class="wrap">
+      <h2 id="products-heading">Custom AI product architecture &amp; builds</h2>
+      <p class="answer">
+        Custom AI product work covers internal platforms and customer-facing assistants: LLM
+        selection and routing, RAG over proprietary corpora, Graph/vector retrieval, content
+        generation and summarization, and the training/deployment standards needed to scale
+        feature delivery without breaking SLAs.
+      </p>
+      <ul>
+        <li>Enterprise chat and knowledge products (for example, oncology support assistants)</li>
+        <li>Transcript and intent intelligence over large historic corpora</li>
+        <li>North-star vision, roadmaps, vendor partnerships, and AI design standards</li>
+        <li>Reliability engineering against SLAs with modern APM and logging stacks</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--surface" id="conversational" aria-labelledby="cx-heading">
+    <div class="wrap">
+      <h2 id="cx-heading">Conversational AI &amp; customer experience</h2>
+      <p class="answer">
+        Conversational AI &amp; CX services design and ship chat, voice, and omnichannel assistants
+        that reduce call volume, raise CSAT, and standardize design across platforms such as
+        VoiceFlow, Dialogflow, Nuance Mix, Watson, Genesys, and cloud contact-center stacks.
+      </p>
+      <ul>
+        <li>Omnichannel chat and voice assistants for web, mobile, and contact centers</li>
+        <li>NLU/NLP design, LLM-assisted intent mining, and conversation analytics</li>
+        <li>UX research, A/B testing, and drop-off reduction for agent and traveler experiences</li>
+        <li>Security, audit, and remediation patterns for regulated industries</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="faq-heading">
+    <div class="wrap">
+      <h2 id="faq-heading">Frequently asked questions</h2>
+      <div class="faq">
+        {
+          faqs.map((f) => (
+            <details>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>

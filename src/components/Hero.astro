@@ -1,0 +1,138 @@
+---
+---
+
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="hero__backdrop" aria-hidden="true">
+    <span class="hero__orb hero__orb--cyan"></span>
+    <span class="hero__orb hero__orb--lime"></span>
+    <svg class="hero__grid" viewBox="0 0 800 600" fill="none">
+      <path
+        d="M40 80 H760 M40 180 H760 M40 280 H760 M40 380 H760 M40 480 H760 M120 40 V560 M240 40 V560 M360 40 V560 M480 40 V560 M600 40 V560 M720 40 V560"
+        stroke="rgba(255,255,255,0.07)"
+        stroke-width="1"></path>
+      <path
+        class="hero__draw"
+        d="M80 420 L220 180 L360 340 L520 120 L720 300"
+        stroke="url(#heroStroke)"
+        stroke-width="2.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-dasharray="420"
+        stroke-dashoffset="420"></path>
+      <defs>
+        <linearGradient id="heroStroke" x1="80" y1="420" x2="720" y2="120">
+          <stop stop-color="#00ADEF"></stop>
+          <stop offset="1" stop-color="#A2D136"></stop>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+
+  <div class="wrap hero__content">
+    <img
+      class="hero__logo animate-rise"
+      src="/logo-light.png"
+      alt="AviKaiDo"
+      width="280"
+      height="80"
+    />
+    <h1 id="hero-heading" class="animate-rise-delay">
+      AI that ships into the business — not into a deck.
+    </h1>
+    <p class="hero__support animate-rise-delay-2">
+      AviKaiDo builds production AI products and guides teams through
+      implementation, agentic automation, and conversational systems with clear ROI.
+    </p>
+    <div class="btn-row animate-rise-delay-2">
+      <a class="btn btn--primary" href="/contact">Book a discovery call</a>
+      <a class="btn btn--ghost" href="/work">See outcomes</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: grid;
+    align-items: end;
+    padding: 7rem 0 4.5rem;
+    background: var(--color-hero-ink);
+    color: rgba(255, 255, 255, 0.84);
+    overflow: hidden;
+  }
+
+  .hero__backdrop {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .hero__orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(8px);
+    animation: drift 8s ease-in-out infinite alternate;
+  }
+
+  .hero__orb--cyan {
+    width: min(48vw, 28rem);
+    height: min(48vw, 28rem);
+    top: -8%;
+    right: -6%;
+    background: radial-gradient(circle, rgba(0, 173, 239, 0.45), transparent 68%);
+  }
+
+  .hero__orb--lime {
+    width: min(40vw, 22rem);
+    height: min(40vw, 22rem);
+    bottom: 8%;
+    left: -8%;
+    background: radial-gradient(circle, rgba(162, 209, 54, 0.35), transparent 70%);
+    animation-delay: 1.2s;
+  }
+
+  .hero__grid {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.9;
+  }
+
+  .hero__draw {
+    animation: draw 2.4s var(--ease) 0.4s forwards;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    max-width: 44rem;
+  }
+
+  .hero__logo {
+    height: clamp(2.8rem, 7vw, 4rem);
+    width: auto;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.35));
+  }
+
+  .hero h1 {
+    color: var(--color-white);
+    margin-bottom: 1rem;
+  }
+
+  .hero__support {
+    font-size: clamp(1.05rem, 2vw, 1.2rem);
+    max-width: 36rem;
+    margin-bottom: 1.75rem;
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  @media (min-width: 900px) {
+    .hero {
+      align-items: center;
+      padding-top: 5.5rem;
+    }
+  }
+</style>

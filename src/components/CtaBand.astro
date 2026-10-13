@@ -1,0 +1,22 @@
+---
+interface Props {
+  title?: string;
+  text?: string;
+}
+
+const {
+  title = 'Ready to put AI into production?',
+  text = 'Bring the workflow that is costing the most time or money. We will tell you honestly whether AI is the right lever — and what a first shippable slice looks like.',
+} = Astro.props;
+---
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>{title}</h2>
+    <p class="section__lead" style="color: rgba(255,255,255,0.72);">{text}</p>
+    <div class="btn-row">
+      <a class="btn btn--primary" href="/contact">Book a discovery call</a>
+      <a class="btn btn--ghost" href={`mailto:avikaido@gmail.com`}>Email AviKaiDo</a>
+    </div>
+  </div>
+</section>

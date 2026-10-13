@@ -1,0 +1,38 @@
+---
+const steps = [
+  {
+    title: 'Discover',
+    text: 'Map the workflow, baseline human performance, pressure-test build-vs-buy, and produce a fixed-scope statement of work. If AI is the wrong lever, we say so.',
+  },
+  {
+    title: 'Build',
+    text: 'Ship a thin production slice on real traffic early, then expand. Models, retrieval, agents, integrations, evals, and observability — owned by your team.',
+  },
+  {
+    title: 'Run',
+    text: 'Monitor KPIs against baseline, refresh prompts as data drifts, tune reviewer thresholds, and train your operators so the system keeps paying off.',
+  },
+];
+---
+
+<section class="section" aria-labelledby="process-heading">
+  <div class="wrap">
+    <p class="section__eyebrow">Engagement model</p>
+    <h2 id="process-heading">Discover. Build. Run.</h2>
+    <p class="answer">
+      AviKaiDo engagements follow a three-phase model so strategy and delivery stay with the same
+      accountable builder. Each phase is a separate decision: take the artifacts in-house after any
+      one of them, or continue into production operations.
+    </p>
+    <ol class="process-steps">
+      {
+        steps.map((s) => (
+          <li>
+            <h3>{s.title}</h3>
+            <p>{s.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

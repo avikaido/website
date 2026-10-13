@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ServicesPreview from '../components/ServicesPreview.astro';
+import Proof from '../components/Proof.astro';
+import Process from '../components/Process.astro';
+import Industries from '../components/Industries.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE_DESCRIPTION } from '../consts';
+---
+
+<BaseLayout
+  title="AviKaiDo"
+  description={SITE_DESCRIPTION}
+  path="/"
+>
+  <Hero />
+  <ServicesPreview />
+  <Proof />
+  <Process />
+  <Industries />
+  <CtaBand />
+</BaseLayout>

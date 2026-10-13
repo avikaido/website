@@ -1,0 +1,19 @@
+---
+import { ZOHO_SALESIQ, zohoSalesIqConfigured } from '../consts';
+
+const widgetSrc = zohoSalesIqConfigured
+  ? `https://${ZOHO_SALESIQ.scriptHost}/widget?wc=${encodeURIComponent(ZOHO_SALESIQ.widgetCode)}`
+  : '';
+---
+
+{
+  zohoSalesIqConfigured && (
+    <>
+      <script is:inline>
+        window.$zoho = window.$zoho || {};
+        $zoho.salesiq = $zoho.salesiq || { ready: function () {} };
+      </script>
+      <script is:inline id="zsiqscript" defer src={widgetSrc} />
+    </>
+  )
+}

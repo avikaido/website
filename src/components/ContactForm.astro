@@ -1,0 +1,193 @@
+---
+import {
+  SITE_EMAIL,
+  ZOHO_CRM,
+  zohoCrmConfigured,
+} from '../consts';
+
+const mailtoFallback = `mailto:${SITE_EMAIL}?subject=${encodeURIComponent('AviKaiDo discovery inquiry')}`;
+const f = ZOHO_CRM.fields;
+---
+
+<div class="contact-block">
+  {
+    zohoCrmConfigured ? (
+      <form
+        class="form"
+        method="POST"
+        accept-charset="UTF-8"
+        action={ZOHO_CRM.actionUrl}
+        data-contact-form
+        data-zoho="1"
+      >
+        <input type="hidden" name="xnQsjsdp" value={ZOHO_CRM.xnQsjsdp} />
+        <input type="hidden" name="xmIwtLD" value={ZOHO_CRM.xmIwtLD} />
+        <input type="hidden" name="actionType" value={ZOHO_CRM.actionType} />
+        <input type="hidden" name="returnURL" value={ZOHO_CRM.returnUrl} />
+        <input type="hidden" id="zc_gad" name="zc_gad" value="" />
+
+        <div class="form__row-2">
+          <label>
+            First name
+            <input type="text" name={f.firstName} required autocomplete="given-name" />
+          </label>
+          <label>
+            Last name
+            <input type="text" name={f.lastName} required autocomplete="family-name" />
+          </label>
+        </div>
+        <label>
+          Work email
+          <input type="email" name={f.email} required autocomplete="email" />
+        </label>
+        <label>
+          Company
+          <input type="text" name={f.company} autocomplete="organization" />
+        </label>
+        <label>
+          Role
+          <input type="text" name={f.title} autocomplete="organization-title" />
+        </label>
+        <label>
+          What are you trying to automate or build?
+          <textarea name={f.description} rows="5" required data-message></textarea>
+        </label>
+        <label>
+          Timeline (optional)
+          {
+            f.timeline ? (
+              <select name={f.timeline} data-timeline>
+                <option value="">Select…</option>
+                <option value="asap">As soon as possible</option>
+                <option value="1-3-months">1–3 months</option>
+                <option value="3-6-months">3–6 months</option>
+                <option value="exploring">Still exploring</option>
+              </select>
+            ) : (
+              <select data-timeline data-timeline-fold="1">
+                <option value="">Select…</option>
+                <option value="asap">As soon as possible</option>
+                <option value="1-3-months">1–3 months</option>
+                <option value="3-6-months">3–6 months</option>
+                <option value="exploring">Still exploring</option>
+              </select>
+            )
+          }
+        </label>
+        <label class="hp" aria-hidden="true">
+          Website
+          <input type="text" name="website_hp" tabindex="-1" autocomplete="off" />
+        </label>
+        <button class="btn btn--primary" type="submit">Send message</button>
+        <p class="form__note">
+          Submissions create a Lead in Zoho CRM. Prefer email? Write to{' '}
+          <a href={`mailto:${SITE_EMAIL}`}>{SITE_EMAIL}</a> (Gmail).
+        </p>
+      </form>
+    ) : (
+      <form class="form" method="GET" action={mailtoFallback} data-contact-form data-mailto="1">
+        <div class="form__row-2">
+          <label>
+            First name
+            <input type="text" name="first" required autocomplete="given-name" data-mail-first />
+          </label>
+          <label>
+            Last name
+            <input type="text" name="last" required autocomplete="family-name" data-mail-last />
+          </label>
+        </div>
+        <label>
+          Work email
+          <input type="email" name="reply" required autocomplete="email" data-mail-email />
+        </label>
+        <label>
+          Company
+          <input type="text" name="company" autocomplete="organization" data-mail-company />
+        </label>
+        <label>
+          Role
+          <input type="text" name="role" autocomplete="organization-title" data-mail-role />
+        </label>
+        <label>
+          What are you trying to automate or build?
+          <textarea name="body" rows="5" required data-mail-body></textarea>
+        </label>
+        <label>
+          Timeline (optional)
+          <select data-mail-timeline>
+            <option value="">Select…</option>
+            <option value="asap">As soon as possible</option>
+            <option value="1-3-months">1–3 months</option>
+            <option value="3-6-months">3–6 months</option>
+            <option value="exploring">Still exploring</option>
+          </select>
+        </label>
+        <button class="btn btn--primary" type="submit">Email AviKaiDo</button>
+        <p class="form__note">
+          Zoho CRM webform is not configured yet — this opens Gmail/mail at{' '}
+          <a href={`mailto:${SITE_EMAIL}`}>{SITE_EMAIL}</a>. Add your CRM tokens in{' '}
+          <code>src/consts.ts</code> (see <code>ZOHO.md</code>).
+        </p>
+      </form>
+    )
+  }
+</div>
+
+<style>
+  .form__row-2 {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 560px) {
+    .form__row-2 {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
+
+<script>
+  const form = document.querySelector('[data-contact-form]');
+  if (form instanceof HTMLFormElement && form.dataset.mailto === '1') {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const val = (sel) => {
+        const el = form.querySelector(sel);
+        return el && 'value' in el ? String(el.value) : '';
+      };
+      const lines = [
+        `Name: ${val('[data-mail-first]')} ${val('[data-mail-last]')}`,
+        `Email: ${val('[data-mail-email]')}`,
+        `Company: ${val('[data-mail-company]')}`,
+        `Role: ${val('[data-mail-role]')}`,
+        val('[data-mail-timeline]') ? `Timeline: ${val('[data-mail-timeline]')}` : '',
+        '',
+        val('[data-mail-body]'),
+      ]
+        .filter(Boolean)
+        .join('\n');
+      window.location.href = `mailto:avikaido@gmail.com?subject=${encodeURIComponent('AviKaiDo discovery inquiry')}&body=${encodeURIComponent(lines)}`;
+    });
+  } else if (form instanceof HTMLFormElement && form.dataset.zoho === '1') {
+    form.addEventListener('submit', (event) => {
+      const hp = form.elements.namedItem('website_hp');
+      if (hp instanceof HTMLInputElement && hp.value) {
+        event.preventDefault();
+        return;
+      }
+      const timelineSelect = form.querySelector('[data-timeline]');
+      const message = form.querySelector('[data-message]');
+      if (
+        timelineSelect instanceof HTMLSelectElement &&
+        timelineSelect.dataset.timelineFold === '1' &&
+        message instanceof HTMLTextAreaElement &&
+        timelineSelect.value
+      ) {
+        const stamp = `\n\n[Timeline: ${timelineSelect.value}]`;
+        if (!message.value.includes('[Timeline:')) {
+          message.value = `${message.value}${stamp}`;
+        }
+      }
+    });
+  }
+</script>

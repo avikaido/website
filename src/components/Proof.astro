@@ -1,0 +1,70 @@
+---
+const cases = [
+  {
+    org: 'AstraZeneca',
+    title: 'AIMI Oncology Chatbot — enterprise AI architecture',
+    text: 'Led the move from vendor chatbot to a customized internal platform with RAG across OpenAI, Llama, Claude, and SageMaker — improving NLU, content generation, and transcript intelligence over 1TB of historic data.',
+    metrics: [
+      { value: '70%', label: 'faster time to market' },
+      { value: '$170K+', label: 'annual service fees saved' },
+      { value: '+15%', label: 'NPS lift' },
+    ],
+  },
+  {
+    org: 'Wells Fargo',
+    title: 'Auxi & Fargo — conversational AI at bank scale',
+    text: 'Directed multi-disciplinary teams shipping proprietary chatbot/voice/NLP platforms, then led the transition to a cloud vendor platform through POC, RFP, and governance for tens of millions of users.',
+    metrics: [
+      { value: '20M+', label: 'users on Auxi' },
+      { value: '54%', label: 'fewer support calls' },
+      { value: '$25M', label: 'yearly savings on Fargo' },
+    ],
+  },
+  {
+    org: 'CVS Health / Aetna',
+    title: 'CeeVee chatbot & YAVA voice assistant',
+    text: 'Standardized conversational design across VoiceFlow, Dialogflow, Nuance Mix, and Watson; applied LLM analysis on 2TB+ of support transcripts to accelerate intent work and launch omnichannel experiences.',
+    metrics: [
+      { value: '60%', label: 'faster time to market' },
+      { value: '2×', label: 'successful engagements' },
+      { value: '42%', label: 'fewer calls' },
+    ],
+  },
+];
+---
+
+<section class="section section--surface" aria-labelledby="proof-heading">
+  <div class="wrap">
+    <p class="section__eyebrow">Outcomes</p>
+    <h2 id="proof-heading">Proof from production systems</h2>
+    <p class="answer">
+      Across healthcare, finance, retail intelligence, and travel, AviKaiDo’s founder has led AI
+      products from strategy through production — oncology assistants, bank-scale voice/chat,
+      pharmacy CX, and ML portfolios — with documented cost, speed, and experience gains.
+    </p>
+
+    <div>
+      {
+        cases.map((c) => (
+          <article class="proof-item">
+            <p class="proof-item__org">{c.org}</p>
+            <h3 class="proof-item__title">{c.title}</h3>
+            <p>{c.text}</p>
+            <ul class="proof-item__metrics">
+              {c.metrics.map((m) => (
+                <li>
+                  {m.value}
+                  <span>{m.label}</span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+
+    <p style="margin-top: 1.5rem;">
+      <a href="/work">View full work history →</a>
+    </p>
+  </div>
+</section>

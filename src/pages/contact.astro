@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { SITE_EMAIL, zohoCrmConfigured, zohoSalesIqConfigured } from '../consts';
+
+const sent = Astro.url.searchParams.get('sent') === '1';
+
+const faqs = [
+  {
+    q: 'What happens on a discovery call?',
+    a: 'A focused conversation on the workflow that hurts most, your data and systems constraints, and whether AI is the right lever. You leave with a clear next step — often a fixed-scope Discovery proposal.',
+  },
+  {
+    q: 'Who should join from our side?',
+    a: 'Ideally one business owner of the process and one technical counterpart (engineering, data, or IT). Bring examples of real cases and current tools if you can.',
+  },
+  {
+    q: 'How soon can we start?',
+    a: 'Most Discovery kicks off within two weeks of agreement. Urgent production issues can sometimes start sooner depending on capacity.',
+  },
+];
+---
+
+<BaseLayout
+  title="Contact"
+  description="Book an AviKaiDo discovery call. Tell us what you want to automate or build — we reply at avikaido@gmail.com."
+  path="/contact"
+>
+  <header class="page-hero">
+    <div class="wrap">
+      <p class="section__eyebrow">Contact</p>
+      <h1>Book a discovery call</h1>
+      <p class="answer">
+        Tell AviKaiDo about the workflow you want to automate or the AI product you need to ship.
+        Inquiries land in Zoho CRM as Leads; we reply from {SITE_EMAIL} (Gmail) — usually within
+        one to two business days.
+      </p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap grid-2">
+      <div>
+        <h2>Send a message</h2>
+        {
+          sent && (
+            <p class="form__status form__status--ok" style="margin-bottom: 1rem;">
+              Thanks — your message was received in Zoho CRM. We will follow up from{' '}
+              {SITE_EMAIL}.
+            </p>
+          )
+        }
+        {!sent && <ContactForm />}
+        {
+          sent && (
+            <p>
+              <a href="/contact">Send another message</a>
+              {' · '}
+              <a href="/">Back home</a>
+            </p>
+          )
+        }
+      </div>
+      <div>
+        <h2>What to expect</h2>
+        <p>
+          No demo theater. Bring the process that is slow, expensive, or error-prone. We will map
+          whether an agent, RAG product, conversational assistant, or classic automation is the
+          right next move.
+        </p>
+        <p>
+          Direct email:
+          <a href={`mailto:${SITE_EMAIL}`}>{SITE_EMAIL}</a>
+        </p>
+        <ul class="industries" style="margin: 1rem 0 1.5rem;">
+          <li>CRM: Zoho{zohoCrmConfigured ? ' · connected' : ' · setup pending'}</li>
+          <li>Chat: SalesIQ{zohoSalesIqConfigured ? ' · live' : ' · setup pending'}</li>
+          <li>Mail: Gmail</li>
+        </ul>
+        <div class="faq">
+          {
+            faqs.map((f) => (
+              <details>
+                <summary>{f.q}</summary>
+                <p>{f.a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

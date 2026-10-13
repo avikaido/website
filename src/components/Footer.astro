@@ -1,0 +1,124 @@
+---
+import { NAV, SITE_EMAIL, SITE_TITLE, ZOHO_BOOKS } from '../consts';
+const year = new Date().getFullYear();
+const portal = ZOHO_BOOKS.clientPortalUrl;
+---
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div class="site-footer__brand">
+      <img src="/logo.png" alt={SITE_TITLE} width="140" height="40" />
+      <p>
+        AI products and implementation consulting. Production systems, not slideware.
+      </p>
+    </div>
+
+    <div>
+      <h2 class="site-footer__heading">Navigate</h2>
+      <ul>
+        {NAV.map((item) => (
+          <li>
+            <a href={item.href}>{item.label}</a>
+          </li>
+        ))}
+        <li><a href="/privacy">Privacy</a></li>
+        {
+          portal && (
+            <li>
+              <a href={portal} rel="noopener noreferrer" target="_blank">
+                {ZOHO_BOOKS.label}
+              </a>
+            </li>
+          )
+        }
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="site-footer__heading">Contact</h2>
+      <p>
+        <a href={`mailto:${SITE_EMAIL}`}>{SITE_EMAIL}</a>
+      </p>
+      <p class="site-footer__meta">Email via Gmail · CRM &amp; chat via Zoho</p>
+      <p>
+        <a class="btn btn--lime" href="/contact">Book a discovery call</a>
+      </p>
+    </div>
+  </div>
+  <div class="wrap site-footer__bottom">
+    <p>© {year} {SITE_TITLE}. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-line);
+    padding: var(--space-xl) 0 var(--space-lg);
+  }
+
+  .site-footer__inner {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  @media (min-width: 800px) {
+    .site-footer__inner {
+      grid-template-columns: 1.4fr 1fr 1fr;
+    }
+  }
+
+  .site-footer__brand img {
+    height: 2.1rem;
+    width: auto;
+    margin-bottom: 0.85rem;
+  }
+
+  .site-footer__brand p,
+  .site-footer p {
+    color: var(--color-muted);
+    font-size: 0.95rem;
+  }
+
+  .site-footer__meta {
+    font-size: 0.8rem !important;
+    margin-top: -0.35rem;
+  }
+
+  .site-footer__heading {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.85rem;
+  }
+
+  .site-footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .site-footer li {
+    margin-bottom: 0.45rem;
+  }
+
+  .site-footer a {
+    color: var(--color-ink-soft);
+    text-decoration: none;
+  }
+
+  .site-footer a:hover {
+    color: var(--color-cyan-deep);
+  }
+
+  .site-footer__bottom {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-line);
+  }
+
+  .site-footer__bottom p {
+    margin: 0;
+    font-size: 0.85rem;
+  }
+</style>

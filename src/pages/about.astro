@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+---
+
+<BaseLayout
+  title="About"
+  description="AviKaiDo is an AI products and consulting firm founded in Michigan by Alexander Khanukov — shipping production AI since the first chatbot wave."
+  path="/about"
+>
+  <header class="page-hero">
+    <div class="wrap">
+      <p class="section__eyebrow">About</p>
+      <h1>Builders first. Consultants who ship.</h1>
+      <p class="answer">
+        AviKaiDo is an AI products and implementation consultancy founded in Commerce Township,
+        Michigan. We help businesses turn AI ambition into governed workflows and products that run
+        on real data — continuing a practice that began with conversational AI in 2016 and now
+        spans healthcare, finance, retail, and enterprise CX.
+      </p>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="wrap grid-2">
+      <div>
+        <h2>Alexander Khanukov</h2>
+        <p class="section__eyebrow" style="margin-top: -0.35rem;">Founder &amp; CEO</p>
+        <p>
+          Alex leads teams building AI products that improve customer experience using machine
+          learning — speech recognition, NLP, LLMs, and generative AI. He focuses on
+          cross-functional collaboration, product vision, and delivering business value while
+          championing the voice of the customer.
+        </p>
+        <p>
+          Recent work includes enterprise AI architecture for oncology support at AstraZeneca,
+          omnichannel chat and voice at CVS Health/Aetna, ML portfolio leadership at Sensormatic
+          (Johnson Controls), and bank-scale conversational platforms as a VP of AI Product at
+          Wells Fargo. He currently consults with healthcare organizations on AI and Epic
+          EHR–adjacent systems, including work around Genesys contact-center stacks.
+        </p>
+        <p>
+          Earlier roles span Royal Caribbean conversational UX, Technology Director at eMara.ai,
+          and Applied UX leadership at MRM//McCann, plus engineering at OnStar/GM. He holds a B.A.
+          in Telecommunications (Media) from Michigan State University, is Pragmatic Institute PMC
+          Level I certified, and has been published in Chatbots Magazine.
+        </p>
+      </div>
+      <div>
+        <h2>Heritage</h2>
+        <p>
+          In 2016 AviKaiDo launched as a bot enablement company behind EveryBot CMS — an early
+          conversation-management platform — and sponsored BotMakers Detroit to grow the local
+          maker community. Those roots still matter: multi-platform conversational design,
+          automation that reduces cognitive load, and tools that meet people where they already
+          work.
+        </p>
+        <p>
+          The company stayed alive through years of hands-on consulting and product leadership
+          inside Fortune-scale organizations. Today AviKaiDo’s public focus is clear: AI products
+          and AI implementation consulting for teams ready to move past pilots.
+        </p>
+        <ul class="industries" style="margin-top: 1.25rem;">
+          <li>Michigan roots</li>
+          <li>Since 2016</li>
+          <li>English &amp; Russian</li>
+          <li>Chatbots Magazine</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>

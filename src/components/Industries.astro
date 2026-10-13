@@ -1,0 +1,24 @@
+---
+const items = [
+  'Healthcare & life sciences',
+  'Health insurance & pharmacy',
+  'Banking & financial services',
+  'Retail intelligence',
+  'Travel & hospitality',
+  'Mental health tech',
+];
+---
+
+<section class="section section--tight section--surface" aria-labelledby="industries-heading">
+  <div class="wrap">
+    <p class="section__eyebrow">Industries</p>
+    <h2 id="industries-heading">Where the work lands</h2>
+    <p class="section__lead">
+      Deep experience in regulated and high-scale environments — including Epic EHR–adjacent
+      healthcare workflows, oncology support, pharmacy CX, and bank-grade conversational AI.
+    </p>
+    <ul class="industries">
+      {items.map((item) => <li>{item}</li>)}
+    </ul>
+  </div>
+</section>
