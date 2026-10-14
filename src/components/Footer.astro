@@ -1,5 +1,5 @@
 ---
-import { NAV, SITE_EMAIL, SITE_TITLE, ZOHO_BOOKS } from '../consts';
+import { BOOKING_URL, NAV, SITE_EMAIL, SITE_TITLE, ZOHO_BOOKS } from '../consts';
 const year = new Date().getFullYear();
 const portal = ZOHO_BOOKS.clientPortalUrl;
 ---
@@ -41,7 +41,9 @@ const portal = ZOHO_BOOKS.clientPortalUrl;
       </p>
       <p class="site-footer__meta">Email via Gmail · CRM &amp; chat via Zoho</p>
       <p>
-        <a class="btn btn--lime" href="/contact">Book a discovery call</a>
+        <a class="btn btn--lime" href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
+          >Book a discovery call</a
+        >
       </p>
     </div>
   </div>

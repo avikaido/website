@@ -1,5 +1,5 @@
 ---
-import { NAV } from '../consts';
+import { BOOKING_URL, NAV } from '../consts';
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
@@ -37,7 +37,12 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
           })
         }
       </ul>
-      <a class="btn btn--primary site-header__cta" href="/contact">Book a discovery call</a>
+      <a
+        class="btn btn--primary site-header__cta"
+        href={BOOKING_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+      >Book a discovery call</a>
     </nav>
   </div>
 </header>

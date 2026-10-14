@@ -1,7 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ContactForm from '../components/ContactForm.astro';
-import { SITE_EMAIL, zohoCrmConfigured, zohoSalesIqConfigured } from '../consts';
+import {
+  BOOKING_URL,
+  SITE_EMAIL,
+  zohoCrmConfigured,
+  zohoSalesIqConfigured,
+} from '../consts';
 
 const sent = Astro.url.searchParams.get('sent') === '1';
 
@@ -23,7 +28,7 @@ const faqs = [
 
 <BaseLayout
   title="Contact"
-  description="Book an AviKaiDo discovery call. Tell us what you want to automate or build — we reply at avikaido@gmail.com."
+  description="Book an AviKaiDo discovery call on Google Calendar, or send a message — we reply at avikaido@gmail.com."
   path="/contact"
 >
   <header class="page-hero">
@@ -31,10 +36,19 @@ const faqs = [
       <p class="section__eyebrow">Contact</p>
       <h1>Book a discovery call</h1>
       <p class="answer">
-        Tell AviKaiDo about the workflow you want to automate or the AI product you need to ship.
-        Inquiries land in Zoho CRM as Leads; we reply from {SITE_EMAIL} (Gmail) — usually within
-        one to two business days.
+        Pick a time on the AviKaiDo calendar, or send a message below. Form submissions create a
+        Lead in Zoho CRM; we follow up from {SITE_EMAIL} (Gmail).
       </p>
+      {
+        !sent && (
+          <div class="btn-row" style="margin-top: 1.25rem;">
+            <a class="btn btn--primary" href={BOOKING_URL} target="_blank" rel="noopener noreferrer"
+              >Open booking calendar</a
+            >
+            <a class="btn btn--outline" href={`mailto:${SITE_EMAIL}`}>Email {SITE_EMAIL}</a>
+          </div>
+        )
+      }
     </div>
   </header>
 
@@ -46,7 +60,8 @@ const faqs = [
           sent && (
             <p class="form__status form__status--ok" style="margin-bottom: 1rem;">
               Thanks — your message was received in Zoho CRM. We will follow up from{' '}
-              {SITE_EMAIL}.
+              {SITE_EMAIL}. Or{' '}
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">book a call now</a>.
             </p>
           )
         }
@@ -69,12 +84,17 @@ const faqs = [
           right next move.
         </p>
         <p>
+          Calendar:{' '}
+          <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">AviKaiDo Schedule</a>
+        </p>
+        <p>
           Direct email:
           <a href={`mailto:${SITE_EMAIL}`}>{SITE_EMAIL}</a>
         </p>
         <ul class="industries" style="margin: 1rem 0 1.5rem;">
           <li>CRM: Zoho{zohoCrmConfigured ? ' · connected' : ' · setup pending'}</li>
           <li>Chat: SalesIQ{zohoSalesIqConfigured ? ' · live' : ' · setup pending'}</li>
+          <li>Calendar: Google</li>
           <li>Mail: Gmail</li>
         </ul>
         <div class="faq">
